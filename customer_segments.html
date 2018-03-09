@@ -23973,7 +23973,7 @@ XKiCVAAAAABJRU5ErkJggg==
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="prompt input_prompt">In&nbsp;[105]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Apply PCA by fitting the good data with the same number of dimensions as features</span>
@@ -23986,6 +23986,9 @@ XKiCVAAAAABJRU5ErkJggg==
 
 <span class="c1"># Generate PCA results plot</span>
 <span class="n">pca_results</span> <span class="o">=</span> <span class="n">vs</span><span class="o">.</span><span class="n">pca_results</span><span class="p">(</span><span class="n">good_data</span><span class="p">,</span> <span class="n">pca</span><span class="p">)</span>
+
+<span class="c1"># review comment - displaying cumulative variance:</span>
+<span class="k">print</span> <span class="n">pca_results</span><span class="p">[</span><span class="s1">&#39;Explained Variance&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">cumsum</span><span class="p">()</span>
 </pre></div>
 
 </div>
@@ -23995,6 +23998,23 @@ XKiCVAAAAABJRU5ErkJggg==
 <div class="output_wrapper">
 <div class="output">
 
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Dimension 1    0.4361
+Dimension 2    0.7179
+Dimension 3    0.8360
+Dimension 4    0.9338
+Dimension 5    0.9804
+Dimension 6    0.9999
+Name: Explained Variance, dtype: float64
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -24337,8 +24357,15 @@ SZIkSeowMEmSJElSx/8DN7dmv1zfl1kAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong>
-    The first and second principal components accounts for 71.79% of the total variance. The first four principal components account for 93.38% of the total variance.</p>
+<p><strong>Answer:</strong></p>
+<p>The first and second principal components accounts for 71.79% of the total variance. The first four principal components account for 93.38% of the total variance.</p>
+<p>each component represents some of the underlying structure in the dataset:</p>
+<ul>
+<li>The first component mainly appears to capture the information contained in Grocery, Milk and Detergents_Paper features, these three features were also found to be the most correlated, suggesting that they could be reduced to smaller dimension without too much loss of information </li>
+<li>The second component seems to be capturing the information contained in the remaining features Fresh, Frozen and Delicatessen, this would make the component a suitable orthogonal to the first component. </li>
+<li>The third component seems to capture the positive impact of fresh feature on the customer sales and large negative decrease of the Delicatessen feature, this suggests that the component tries to account for the lack of correlation between the two features. </li>
+<li>The fourth component seems similar to the third component but captures the positive impact of Frozen items and tries to account for the lack of correlation between frozen and the remaining features of the second component by giving them a very negative decrease.</li>
+</ul>
 
 </div>
 </div>
